@@ -16,6 +16,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
@@ -25,7 +26,7 @@
             <!-- Вторая колонка -->
         </Grid.ColumnDefinitions>
 
-        <TextBlock Text="Назначение сотрудника на заявку" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,0,0,10" Grid.Row="0" Grid.ColumnSpan="2"/>
+        <TextBlock Text="" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,0,0,10" Grid.Row="0" Grid.ColumnSpan="2"/>
 
         <TextBlock Text="ID Заявки:" FontSize="16" Grid.Row="1" Grid.Column="0"/>
         <TextBlock x:Name="RequestIdTextBlock" FontSize="16" Grid.Row="1" Grid.Column="1" Margin="10,0,0,0"/>
@@ -39,6 +40,9 @@
         <TextBlock Text="Выберите сотрудника:" FontSize="16" Grid.Row="4" Grid.Column="0"/>
         <ComboBox x:Name="EmployeeComboBox" Grid.Row="4" Grid.Column="1" Margin="10,0,0,10" Width="300" Height="30"/>
 
-        <Button Content="Назначить" Grid.Row="5" Width="100" Click="AssignButton_Click" HorizontalAlignment="Right" Grid.ColumnSpan="2"/>
+        <TextBlock Text="Дни, потраченные на задачу:" FontSize="16" Grid.Row="5" Grid.Column="0"/>
+        <TextBox x:Name="DaysSpentTextBox" FontSize="16" Grid.Row="5" Grid.Column="1" Width="300" Height="25"/>
+        
+        <Button Content="Изменить" Grid.Row="6" Width="100" Click="AssignButton_Click" HorizontalAlignment="Right" Grid.ColumnSpan="2"/>
     </Grid>
 </Page>

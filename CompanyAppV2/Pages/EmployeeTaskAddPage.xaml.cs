@@ -26,7 +26,8 @@ namespace CompanyAppV2.Pages
                     {
                         r.ID,
                         r.ProblemDescription,
-                        r.DeadLine // Добавляем дедлайн
+                        r.DeadLine,
+                        r.DaysSpent
                     })
                     .FirstOrDefault();
 
@@ -34,7 +35,8 @@ namespace CompanyAppV2.Pages
                 {
                     RequestIdTextBlock.Text = request.ID.ToString();
                     ProblemDescriptionTextBlock.Text = request.ProblemDescription;
-                    DeadlineDatePicker.SelectedDate = request.DeadLine; // Устанавливаем дедлайн
+                    DeadlineDatePicker.SelectedDate = request.DeadLine;
+                    DaysSpentTextBox.Text = request.DaysSpent.ToString();
                 }
                 else
                 {
@@ -68,22 +70,31 @@ namespace CompanyAppV2.Pages
                     var request = db.Requests.FirstOrDefault(r => r.ID == requestId);
                     if (request != null)
                     {
-                        request.EmployeeID = (int)EmployeeComboBox.SelectedValue; // Обновляем ID сотрудника
+                        request.EmployeeID = (int)EmployeeComboBox.SelectedValue; 
 
-                        // Проверяем, выбрана ли дата
                         if (DeadlineDatePicker.SelectedDate.HasValue)
                         {
-                            request.DeadLine = DeadlineDatePicker.SelectedDate.Value; // Обновляем дедлайн
+                            request.DeadLine = DeadlineDatePicker.SelectedDate.Value; 
                         }
                         else
                         {
                             MessageBox.Show("Пожалуйста, выберите дедлайн.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
-                            return; // Выход из метода, если дата не выбрана
+                            return;
                         }
 
-                        db.SaveChanges(); // Сохраняем изменения
+                        if (int.TryParse(DaysSpentTextBox.Text, out int daysSpent))
+                        {
+                            request.DaysSpent = daysSpent;
+                        }
+                        else
+                        {
+                            MessageBox.Show("Пожалуйста, введите корректное количество дней.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+                            return; 
+                        }
+
+                        db.SaveChanges();
                         MessageBox.Show("Сотрудник назначен успешно!", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
-                        NavigationService.GoBack(); // Возвращаемся на предыдущую страницу
+                        NavigationService.GoBack();
                     }
                     else
                     {

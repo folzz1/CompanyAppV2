@@ -69,14 +69,14 @@ namespace CompanyAppV2.Pages
 
             using (var db = new Entities())
             {
-                var newRequest = new Requests // Ensure you use the correct entity name
+                var newRequest = new Requests
                 {
                     Date = DateTime.Now,
                     EquipmentID = (int)EquipmentComboBox.SelectedValue,
                     FaultTypeID = (int)FaultTypeComboBox.SelectedValue,
                     ProblemDescription = ProblemDescriptionTextBox.Text,
                     UserID = userId,
-                    StatusID = 1 // ID статуса "В ожидании"
+                    StatusID = 1
                 };
 
                 db.Requests.Add(newRequest);
@@ -84,7 +84,7 @@ namespace CompanyAppV2.Pages
             }
 
             MessageBox.Show("Заявка успешно создана!", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
-            NavigationService.GoBack(); // Возврат на предыдущую страницу
+            NavigationService.GoBack();
         }
     }
 }

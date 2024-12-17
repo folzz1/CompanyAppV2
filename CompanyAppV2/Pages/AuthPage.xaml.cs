@@ -27,12 +27,10 @@ namespace CompanyAppV2.Pages
 
         private void TextBoxLogin_Changed(object sender, RoutedEventArgs e)
         {
-            // Логика для отображения подсказки, если необходимо
         }
 
         private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
         {
-            // Логика для отображения подсказки, если необходимо
         }
 
         private void LoginButton_Click(object sender, RoutedEventArgs e)
@@ -46,7 +44,7 @@ namespace CompanyAppV2.Pages
                 return;
             }
 
-            using (var db = new Entities()) // Замените на ваш контекст базы данных
+            using (var db = new Entities())
             {
                 var user = db.Users.AsNoTracking().FirstOrDefault(u => u.Login == username);
 
@@ -56,7 +54,7 @@ namespace CompanyAppV2.Pages
                     return;
                 }
 
-                if (user.Password != password) // Здесь лучше использовать хеширование паролей
+                if (user.Password != password)
                 {
                     MessageBox.Show("Неверный пароль!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;

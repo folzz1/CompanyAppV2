@@ -40,12 +40,11 @@ namespace CompanyAppV2.Pages
                     FaultTypeNameTextBlock.Text = request.FaultTypeName;
                     ProblemDescriptionTextBlock.Text = request.ProblemDescription;
 
-                    // Загрузка статусов в ComboBox
                     var statuses = db.Status.ToList();
                     StatusComboBox.ItemsSource = statuses;
-                    StatusComboBox.DisplayMemberPath = "Name"; // Отображаемое имя
-                    StatusComboBox.SelectedValuePath = "ID"; // Значение для выбора
-                    StatusComboBox.SelectedValue = request.StatusID; // Устанавливаем текущий статус
+                    StatusComboBox.DisplayMemberPath = "Name";
+                    StatusComboBox.SelectedValuePath = "ID";
+                    StatusComboBox.SelectedValue = request.StatusID;
                 }
                 else
                 {
@@ -61,10 +60,10 @@ namespace CompanyAppV2.Pages
                 var request = db.Requests.FirstOrDefault(r => r.ID == requestId);
                 if (request != null)
                 {
-                    request.StatusID = (int)StatusComboBox.SelectedValue; // Обновляем статус
-                    db.SaveChanges(); // Сохраняем изменения
+                    request.StatusID = (int)StatusComboBox.SelectedValue;
+                    db.SaveChanges();
                     MessageBox.Show("Статус успешно изменен!", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
-                    NavigationService.GoBack(); // Возвращаемся на предыдущую страницу
+                    NavigationService.GoBack();
                 }
                 else
                 {
